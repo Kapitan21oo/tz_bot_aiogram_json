@@ -2,7 +2,6 @@ from django.http import JsonResponse
 from django.views import View
 import random
 
-
 class WeatherView(View):
     def get(self, request, *args, **kwargs):
         # Получаем значение параметра 'city' из GET-запроса
@@ -11,20 +10,20 @@ class WeatherView(View):
         if city:
             # Здесь определяем данные о погоде для различных городов
             weather_data = {
-                "Москва": {"температура": random.randint(-10, 30), "скорость_ветра": random.randint(0, 20),
-                           "осадки": random.choice(["Ясно", "Облачно", "Дождь"])},
-                "Берлин": {"температура": random.randint(-5, 25), "скорость_ветра": random.randint(0, 15),
-                           "осадки": random.choice(["Ясно", "Облачно", "Дождь"])},
-                "Лондон": {"температура": random.randint(5, 20), "скорость_ветра": random.randint(5, 25),
-                           "осадки": random.choice(["Ясно", "Облачно", "Дождь"])},
-                "Нью-Йорк": {"температура": random.randint(0, 30), "скорость_ветра": random.randint(0, 20),
-                             "осадки": random.choice(["Ясно", "Облачно", "Дождь"])},
-                "Токио": {"температура": random.randint(10, 35), "скорость_ветра": random.randint(0, 10),
-                          "осадки": random.choice(["Ясно", "Облачно", "Дождь"])},
+                "Москва": {"temperature": random.randint(-10, 30), "wind_speed": random.randint(0, 20),
+                           "precipitation": random.choice(["Ясно", "Облачно", "Дождь"])},
+                "Берлин": {"temperature": random.randint(-5, 25), "wind_speed": random.randint(0, 15),
+                           "precipitation": random.choice(["Ясно", "Облачно", "Дождь"])},
+                "Лондон": {"temperature": random.randint(5, 20), "wind_speed": random.randint(5, 25),
+                           "precipitation": random.choice(["Ясно", "Облачно", "Дождь"])},
+                "Нью-Йорк": {"temperature": random.randint(0, 30), "wind_speed": random.randint(0, 20),
+                             "precipitation": random.choice(["Ясно", "Облачно", "Дождь"])},
+                "Токио": {"temperature": random.randint(10, 35), "wind_speed": random.randint(0, 10),
+                          "precipitation": random.choice(["Ясно", "Облачно", "Дождь"])},
             }
 
             # Получаем данные о погоде для указанного города (если он существует)
-            city_data = weather_data.get(city.capitalize())
+            city_data = weather_data.get(city)
 
             if city_data:
                 # Если данные о погоде для города найдены, возвращаем их в формате JSON
