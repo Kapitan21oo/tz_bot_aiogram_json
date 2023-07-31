@@ -28,10 +28,10 @@ class WeatherView(View):
 
             if city_data:
                 # Если данные о погоде для города найдены, возвращаем их в формате JSON
-                return JsonResponse(city_data)
+                return JsonResponse(city_data, json_dumps_params={'ensure_ascii': False})
             else:
                 # Если город не найден, возвращаем сообщение об ошибке с кодом 404
-                return JsonResponse({"error": "Город не найден"}, status=404)
+                return JsonResponse({"error": "City not found"}, status=404, json_dumps_params={'ensure_ascii': False})
         else:
             # Если параметр 'city' отсутствует в запросе, возвращаем сообщение об ошибке с кодом 400
-            return JsonResponse({"error": "Отсутствует параметр 'city'"}, status=400)
+            return JsonResponse({"error": "Отсутствует параметр 'city'"}, status=400, json_dumps_params={'ensure_ascii': False})
